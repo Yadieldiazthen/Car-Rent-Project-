@@ -1,5 +1,5 @@
 cars = []
-print("hello")
+print("hell")
 def new_cars():
     name = input("Car name:")
 
