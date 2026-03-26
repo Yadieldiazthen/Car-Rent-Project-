@@ -1,5 +1,5 @@
 cars = []
-print("hello")
+
 def new_cars():
     name = input("Car name:")
 
@@ -32,4 +32,3 @@ while True:
     else:
         print("Try again")
 
-#this is a test
