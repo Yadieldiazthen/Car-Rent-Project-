@@ -17,25 +17,6 @@ def view_cars():
         for car in cars:
             print(car["name"], "is", car["state"])
 
-while True:
-    print("RENT CAR")
-    print("1. Add car:")
-    print("2. View car:")
-    print("3. Add Customer:")
-    print("4. View customers")
-    print("5. Exit:")
-
-    select = input("Choose a number:")
-
-    if select == "1":
-        new_cars()
-    elif select == "2":
-        view_cars()
-    elif select == "3":
-        break
-    else:
-        print("Try again")
-
 def new_costumer():
     name = input("Costumer name:")
 
@@ -53,5 +34,26 @@ def view_customers():
     else:
         for i, c in enumerate(customers):
             print(i,"-",c["name"])
-
         
+while True:
+    print("RENT CAR")
+    print("1. Add car:")
+    print("2. View car:")
+    print("3. Add Customer:")
+    print("4. View customers")
+    print("5. Exit:")
+
+    select = input("Choose a number:")
+
+    if select == "1":
+        new_cars()
+    elif select == "2":
+        view_cars()
+    elif select == "3":
+        new_costumer()
+    elif select == "4":
+        view_customers()
+    elif select == '5':
+        break
+    else:
+        print("Try again")
