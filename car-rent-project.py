@@ -42,31 +42,25 @@ def rent_car():
     print("Cars:")
     for i, car in enumerate(cars):
         print(i, car["name"], car['state'])
-
     try: 
         car_number = int(input("Choose car number:"))
     except: 
         print("Type a properly number")
-        return
-    
+        return   
     if car_number < 0 or car_number >= len(cars):
         print("Write a properly number")
-        return
-    
+        return  
     if cars[car_number]['state'] != 'Available':
         print("Car is already rented")
-        return
-    
+        return 
     print("Customers:")
     for i, c in enumerate(customers):
         print(i, c['name'])
-
     try:
         customer_number = int(input("Choose customer number:"))
     except:
         print("Choose a properly number:")
         return
-    
     if customer_number < 0 or customer_number >= len(customers):
         print("Incorrect")
         return
