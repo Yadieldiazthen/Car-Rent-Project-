@@ -71,6 +71,14 @@ def rent_car():
     rents.append(rental)
     print("Car rented")
 
+def view_rents():
+    if len(rents) == 0:
+        print("No rents")
+    else:
+        for r in rents:
+            print(r["customer"], "rented", r["car"])
+
+
 while True:
     print("RENT CAR")
     print("1. Add car:")
@@ -78,7 +86,8 @@ while True:
     print("3. Add Customer:")
     print("4. View customers:")
     print("5. Rent car:")
-    print("6. Exit:")
+    print("6. View rents:")
+    print("7. Exit:")
 
     select = input("Choose a number:")
 
@@ -93,6 +102,8 @@ while True:
     elif select == '5':
         rent_car()
     elif select == '6':
-        break       
+        view_rents()
+    elif select == '7':
+        break
     else:
         print("Try again")
