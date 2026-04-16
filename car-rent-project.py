@@ -78,6 +78,16 @@ def view_rents():
         for r in rents:
             print(r["customer"], "rented", r["car"])
 
+def return_car():
+    print("Cars:")
+    for i, car in enumerate(cars):
+        print(i, car['name'], car['state'])
+
+    car_number = int(input('Choose you car:'))
+
+    cars[car_number]['state'] = 'Available'
+    print("Car was perfectly returned")
+
 
 while True:
     print("RENT CAR")
@@ -87,7 +97,8 @@ while True:
     print("4. View customers:")
     print("5. Rent car:")
     print("6. View rents:")
-    print("7. Exit:")
+    print("7. Return Car:")
+    print("8. Exit:")
 
     select = input("Choose a number:")
 
@@ -104,6 +115,8 @@ while True:
     elif select == '6':
         view_rents()
     elif select == '7':
+        return_car()
+    elif select == '8':
         break
     else:
         print("Try again")
