@@ -1,3 +1,12 @@
+import request
+def Car_Api():
+    url = "https://carapi.app/api/models/v2"
+    response = request.gets(url)
+    data = response.json()
+
+    print("Cars from Api")
+
+    
 cars = []
 customers = []
 rents = []
