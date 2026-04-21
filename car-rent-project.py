@@ -51,31 +51,25 @@ def rent_car():
     print("Cars:")
     for i, car in enumerate(cars):
         print(i, car["name"], car['state'])
-
     try: 
         car_number = int(input("Choose car number:"))
     except: 
         print("Type a properly number")
-        return
-    
+        return   
     if car_number < 0 or car_number >= len(cars):
         print("Write a properly number")
-        return
-    
+        return  
     if cars[car_number]['state'] != 'Available':
         print("Car is already rented")
-        return
-    
+        return 
     print("Customers:")
     for i, c in enumerate(customers):
         print(i, c['name'])
-
     try:
         customer_number = int(input("Choose customer number:"))
     except:
         print("Choose a properly number:")
         return
-    
     if customer_number < 0 or customer_number >= len(customers):
         print("Incorrect")
         return
@@ -86,6 +80,24 @@ def rent_car():
     rents.append(rental)
     print("Car rented")
 
+def view_rents():
+    if len(rents) == 0:
+        print("No rents")
+    else:
+        for r in rents:
+            print(r["customer"], "rented", r["car"])
+
+def return_car():
+    print("Cars:")
+    for i, car in enumerate(cars):
+        print(i, car['name'], car['state'])
+
+    car_number = int(input('Choose you car:'))
+
+    cars[car_number]['state'] = 'Available'
+    print("Car was perfectly returned")
+
+
 while True:
     print("RENT CAR")
     print("1. Add car:")
@@ -93,7 +105,9 @@ while True:
     print("3. Add Customer:")
     print("4. View customers:")
     print("5. Rent car:")
-    print("6. Exit:")
+    print("6. View rents:")
+    print("7. Return Car:")
+    print("8. Exit:")
 
     select = input("Choose a number:")
 
@@ -108,6 +122,10 @@ while True:
     elif select == '5':
         rent_car()
     elif select == '6':
-        break       
+        view_rents()
+    elif select == '7':
+        return_car()
+    elif select == '8':
+        break
     else:
         print("Try again")
