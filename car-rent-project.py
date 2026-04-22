@@ -6,7 +6,6 @@ def Car_Api():
 
     print("Cars from Api")
 
-    
 cars = []
 customers = []
 rents = []
