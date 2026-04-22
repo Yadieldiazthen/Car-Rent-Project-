@@ -1,7 +1,7 @@
-import request
+import requests
 def Car_Api():
     url = "https://carapi.app/api/models/v2"
-    response = request.gets(url)
+    response = requests.gets(url)
     data = response.json()
 
     print("Cars from Api")
