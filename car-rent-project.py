@@ -1,21 +1,26 @@
-import requests
-def Car_Api():
-    url = "https://carapi.app/api/models/v2"
-    response = requests.gets(url)
-    data = response.json()
+import sqlite3
+con = sqlite3.connect("Cars.db")
 
-    print("Cars from Api")
+cur = con.cursor()
 
 cars = []
 customers = []
 rents = []
+
+def cars_database():
+    cur.execute("SELECT * FROM Cars")
+
+    filas = cur.fetchall()
+
+    for fila in filas:
+        print(fila)
 
 def new_cars():
     name = input("Car name:")
 
     car = {"name":name, "state": "Available"}
 
-    cars.append(car)
+    
     print("Car added")
 
 def view_cars():
@@ -106,7 +111,8 @@ while True:
     print("5. Rent car:")
     print("6. View rents:")
     print("7. Return Car:")
-    print("8. Exit:")
+    print("8. View Database cars")
+    print("9. Exit:")
 
     select = input("Choose a number:")
 
@@ -125,6 +131,8 @@ while True:
     elif select == '7':
         return_car()
     elif select == '8':
+        cars_database()
+    elif select == '9':
         break
     else:
         print("Try again")
