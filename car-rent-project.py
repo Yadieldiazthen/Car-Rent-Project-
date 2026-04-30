@@ -81,8 +81,8 @@ def rent_car():
         return
     
     days = int(input("How many days?"))
-    today = data.today()
-    
+    today = date.today()
+
     cur.execute("""INSERT INTO Rents (car_id, customer_id) VALUES (?, ?)""", (car_id, customer_id))
     cur.execute("""UPDATE Cars SET state = 'Rented' WHERE id = ? """, (car_id,))
 
