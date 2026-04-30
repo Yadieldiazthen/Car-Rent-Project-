@@ -29,6 +29,10 @@ def new_cars():
 def new_customers():
     Name = input("Customer name:")
 
+    if Name == "":
+        print("Enter a properly name:")
+        return
+
     cur.execute("INSERT INTO Customers (Name) VALUES (?)",
     (Name,))
 
@@ -45,11 +49,11 @@ def view_customers():
         print(fila)
 
 def view_rents():
-    cur.execute("SELECT + FROM Rents")
+    cur.execute("SELECT * FROM Rents")
     filas = cur.fetchall()
 
-    for file in filas:
-        print(filas)
+    for fila in filas:
+        print(fila)
 
         
 def rent_car():
@@ -90,7 +94,7 @@ def rent_car():
     days = int(input("How many days?"))
     today = date.today()
 
-    cur.execute("""INSERT INTO Rents (car_id, customer_id, dates, days) VALUES (?, ?)""", (car_id, customer_id, today, days))
+    cur.execute("""INSERT INTO Rents (car_id, customer_id, date, days) VALUES (?, ?, ?, ?)""", (car_id, customer_id, today, days))
     cur.execute("""UPDATE Cars SET state = 'Rented' WHERE id = ? """, (car_id,))
 
     con.commit()
@@ -113,7 +117,8 @@ while True:
     print("4. View customers:")
     print("5. Rent car:")
     print("6. Return Car:")
-    print("7. Exit:")
+    print("7. View rents:")
+    print("8. Exit:")
 
     select = input("Choose a number:")
 
@@ -130,6 +135,8 @@ while True:
     elif select == '6':
         return_car()
     elif select == '7':
+        view_rents()
+    elif select == '8':
         break
     else:
         print("Try again")
