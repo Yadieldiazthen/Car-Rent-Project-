@@ -38,7 +38,7 @@ def new_cars():
 def new_customers():
     print(" ")
     Name = input("Customer name:")
-    print("")
+    print(" ")
     
     if Name == "":
         print("ENTER A PROPERLY NAME")
@@ -49,7 +49,7 @@ def new_customers():
 
     con.commit()
     
-    print("Customer added")
+    print("CUSTOMER ADDED!")
 
 def view_customers():
     cur.execute("SELECT * FROM Customers")
@@ -111,7 +111,7 @@ def rent_car():
         return
     
     try:
-        days = int(input("How many days?"))
+        days = int(input("Select the amount of days you want the car:"))
         print(" ")
     except:
         print("ENTER A VALID NUMBER OF DAYS!")
@@ -122,12 +122,18 @@ def rent_car():
     cur.execute("""UPDATE Cars SET state = 'Rented' WHERE id = ? """, (car_id,))
 
     con.commit()
-
+ 
     print("Car rented")
 
 def return_car():
-    car_id = int(input("Enter car Id to return:"))
-
+    print(" ")
+    
+    try:
+        car_id = int(input("Enter car Id to return:"))
+    except:
+        print("WRITE AN ID!")
+        return 
+        
     cur.execute("""UPDATE Cars SET state = 'Available' Where id = ? """, (car_id,))
     con.commit()
 
