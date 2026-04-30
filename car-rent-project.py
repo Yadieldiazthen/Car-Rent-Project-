@@ -9,12 +9,19 @@ def cars_view():
 
     filas = cur.fetchall()
 
+    if len(filas) == 0:
+        print("NO CARS!")
+        return
+
     for fila in filas:
         print(fila)
 
 def new_cars():
+    print(" ")
     Year = input("Car year:")
+    print(" ")
     Model = input("Car model:")
+    print(" ")
     Brand = input("Car brand:")
 
     cur.execute("""
@@ -23,16 +30,20 @@ def new_cars():
     """, (Brand, Model, Year))
 
     con.commit()
-    
-    print("Car added")
+
+    print(" ")
+    print("CAR ADDED!")
+    print(" ")
 
 def new_customers():
+    print(" ")
     Name = input("Customer name:")
-
+    print("")
+    
     if Name == "":
-        print("Enter a properly name:")
+        print("ENTER A PROPERLY NAME")
         return
-
+    
     cur.execute("INSERT INTO Customers (Name) VALUES (?)",
     (Name,))
 
@@ -45,12 +56,20 @@ def view_customers():
 
     filas = cur.fetchall()
 
+    if len(filas) == 0:
+        print("NO CUSTOMERS!")
+        return
+
     for fila in filas:
         print(fila)
 
 def view_rents():
     cur.execute("SELECT * FROM Rents")
     filas = cur.fetchall()
+
+    if len(filas) == 0:
+        print("NO RENTS!")
+        return
 
     for fila in filas:
         print(fila)
@@ -91,7 +110,12 @@ def rent_car():
         print("Choose a properly number:")
         return
     
-    days = int(input("How many days?"))
+    try:
+        days = int(input("How many days?"))
+        print(" ")
+    except:
+        print("ENTER A VALID NUMBER OF DAYS!")
+        return
     today = date.today()
 
     cur.execute("""INSERT INTO Rents (car_id, customer_id, date, days) VALUES (?, ?, ?, ?)""", (car_id, customer_id, today, days))
@@ -110,6 +134,7 @@ def return_car():
     print("Car was perfectly returned")
 
 while True:
+    print("")
     print("RENT CAR")
     print("1. Add car:")
     print("2. View car:")
