@@ -44,6 +44,13 @@ def view_customers():
     for fila in filas:
         print(fila)
 
+def view_rents():
+    cur.execute("SELECT + FROM Rents")
+    filas = cur.fetchall()
+
+    for file in filas:
+        print(filas)
+
         
 def rent_car():
     cur.execute("SELECT * FROM Cars WHERE state = 'Available' ")
