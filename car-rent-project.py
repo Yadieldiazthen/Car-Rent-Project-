@@ -1,5 +1,6 @@
 import sqlite3
 con = sqlite3.connect("Cars.db")
+from datetime import date
 
 cur = con.cursor()
 
