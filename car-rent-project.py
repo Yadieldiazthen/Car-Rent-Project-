@@ -48,8 +48,8 @@ def view_rents():
     cur.execute("SELECT * FROM Rents")
     filas = cur.fetchall()
 
-    for file in filas:
-        print(filas)
+    for fila in filas:
+        print(fila)
 
         
 def rent_car():
@@ -63,12 +63,22 @@ def rent_car():
     print("Cars:")
     for car in cars:
         print(car)
+
+
+    while True:    
+        try: 
+            car_id = int(input("Choose car id:"))
+
+            cur.execute('SELECT * FROM Cars WHERE id = ? AND state = "Available"', (car_id, ))
+            car = cur.fetchone()
         
-    try: 
-        car_id = int(input("Choose car id:"))
-    except: 
-        print("Type a properly number")
-        return   
+            if car is None:
+                print('That car does not exist or is not available')
+            else:
+                break
+        
+        except: 
+            print("Type a properly number")   
     
     cur.execute("SELECT * FROM Customers")
     customers = cur.fetchall()
@@ -87,10 +97,22 @@ def rent_car():
         print("Choose a properly number:")
         return
     
-    days = int(input("How many days?"))
+
+    while True:
+        try:
+            days = int(input("How many days?"))
+
+            if days > 0:
+                break
+            else:
+                print("Days must be greater than 0: ")
+
+        except:
+            print("Type a valid number")
+            
     today = date.today()
 
-    cur.execute("""INSERT INTO Rents (car_id, customer_id, dates, days) VALUES (?, ?)""", (car_id, customer_id, today, days))
+    cur.execute("""INSERT INTO Rents (car_id, customer_id, dates, days) VALUES (?, ?, ?, ?)""", (car_id, customer_id, today, days))
     cur.execute("""UPDATE Cars SET state = 'Rented' WHERE id = ? """, (car_id,))
 
     con.commit()
@@ -101,11 +123,12 @@ def return_car():
     car_id = int(input("Enter car Id to return:"))
 
     cur.execute("""UPDATE Cars SET state = 'Available' Where id = ? """, (car_id,))
-    con.commit
+    con.commit()
    
     print("Car was perfectly returned")
 
 while True:
+    print(' ')
     print("RENT CAR")
     print("1. Add car:")
     print("2. View car:")
