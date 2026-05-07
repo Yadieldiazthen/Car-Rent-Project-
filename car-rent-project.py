@@ -112,7 +112,7 @@ def rent_car():
             
     today = date.today()
 
-    cur.execute("""INSERT INTO Rents (car_id, customer_id, dates, days) VALUES (?, ?, ?, ?)""", (car_id, customer_id, today, days))
+    cur.execute("""INSERT INTO Rents (car_id, customer_id, Date, days) VALUES (?, ?, ?, ?)""", (car_id, customer_id, today, days))
     cur.execute("""UPDATE Cars SET state = 'Rented' WHERE id = ? """, (car_id,))
 
     con.commit()
@@ -130,14 +130,23 @@ def return_car():
 while True:
     print(' ')
     print("RENT CAR")
+    print(' ')
     print("1. Add car:")
+    print(' ')
     print("2. View car:")
+    print(' ')
     print("3. Add Customer:")
+    print(' ')
     print("4. View customers:")
+    print(' ')
     print("5. View rents")
+    print(' ')
     print("6. Rent car:")
+    print(' ')
     print("7. Return Car:")
+    print(' ')
     print("8. Exit:")
+    print(' ')
 
     select = input("Choose a number:")
 
